@@ -26,7 +26,7 @@ describe('Performing Graphql queries in Article service', function () {
     }
   });
 
-  it('Create Article Data with Auth Token', done => {
+  it('Create title Data with Auth Token', done => {
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
       contentType: 'application/json',
@@ -34,13 +34,13 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.createArticle,
+        query: fixture.createTitle,
 
       })
     )
       .then(res => {
         expect(res.status).toBe(200);
-        articleId = res.data.createArticle.id;
+        TitleId = res.data.createTitle.id;
         done();
       })
       .catch(err => {
@@ -49,7 +49,7 @@ describe('Performing Graphql queries in Article service', function () {
       });
   });
 
-  it('Create Article Data without Auth Token', done => {
+  it('Create Title Data without Auth Token', done => {
   
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
@@ -57,7 +57,7 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.createArticle,
+        query: fixture.createTitle,
 
       })
     )
@@ -73,7 +73,7 @@ describe('Performing Graphql queries in Article service', function () {
       });
   });
 
-  it('Save Article Data with Auth Token', done => {
+  it('Save Title Data with Auth Token', done => {
   
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
@@ -82,14 +82,14 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.saveArticle(articleId),
+        query: fixture.saveTitle(TitleId),
 
       })
     )
       .then(res => {
         expect(res.status).toBe(200);
-        expect(res.data.saveArticle.title).toEqual("this is my prognosis");
-        expect(res.data.saveArticle.id).toEqual(articleId);
+        expect(res.data.saveTitle.title).toEqual("this is my prognosis");
+        expect(res.data.saveTitle.id).toEqual(TitleId);
         done();
       })
       .catch(err => {
@@ -97,7 +97,7 @@ describe('Performing Graphql queries in Article service', function () {
         done();
       });
   });
-  it('Save Article Data without Auth Token', done => {
+  it('Save Title Data without Auth Token', done => {
   
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
@@ -105,7 +105,7 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.saveArticle(articleId),
+        query: fixture.saveTitle(TitleId),
 
       })
     )
@@ -121,7 +121,7 @@ describe('Performing Graphql queries in Article service', function () {
       });
   });
 
-  it('Publish Article Data with Auth Token', done => {
+  it('Publish Title Data with Auth Token', done => {
   
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
@@ -130,14 +130,14 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.publishArticle(articleId),
+        query: fixture.publishTitle(TitleId),
 
       })
     )
       .then(res => {
         expect(res.status).toBe(200);
-        expect(res.data.publishArticle.title).toEqual("this is my prognosis");
-        expect(res.data.publishArticle.id).toEqual(articleId);
+        expect(res.data.publishTitle.title).toEqual("this is my prognosis");
+        expect(res.data.publishATitle.id).toEqual(TitleId);
         done();
       })
       .catch(err => {
@@ -145,7 +145,7 @@ describe('Performing Graphql queries in Article service', function () {
         done();
       });
   });
-  it('Publish Article Data without Auth Token', done => {
+  it('Publish Title Data without Auth Token', done => {
   
     const test = tester({
       url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
@@ -153,7 +153,7 @@ describe('Performing Graphql queries in Article service', function () {
     });
     test(
       JSON.stringify({
-        query: fixture.publishArticle(articleId),
+        query: fixture.publishTitle(TitleId),
 
       })
     )
@@ -168,7 +168,7 @@ describe('Performing Graphql queries in Article service', function () {
         done();
       });
   });
-  // it('Apply event filter in articles', done => {
+  // it('Apply event filter in Title', done => {
   //   const test = tester({
   //     url: `${config.APP_URL}/${config.GQL_URL_DIR}`,
   //     contentType: 'application/json',
@@ -177,7 +177,7 @@ describe('Performing Graphql queries in Article service', function () {
   //   test(
   //     JSON.stringify({
   //       query: `query{
-  //       articles (
+  //       Titles (
   //         filter: "{\"eventId\": {\"$eq\":91468} }"
   //       ){
   //         title
